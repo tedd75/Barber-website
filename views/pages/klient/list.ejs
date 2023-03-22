@@ -1,0 +1,56 @@
+<%- include ('../../fragments/header.ejs') %>
+    <main>
+        <h2>Lista klientów</h2>
+        <table class="table-list">
+            <thead>
+                <tr>
+                    <th>ID Klienta</th>
+                    <th>Imię</th>
+                    <th>Nazwisko</th>
+                    <th>Numer telefonu</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (let kl of kls) { %>
+                    <tr>
+                        <td>
+                            <%= kl._id %>
+                        </td>
+                        <td>
+                            <%= __('kl.fields.firstName') %>
+                        </td>
+                        <td>
+                            <%= __('kl.lastName') %>
+                        </td>
+                        <td>
+                            <%= kl.telNum %>
+                        </td>
+
+                        <td>
+                            <ul class="list-actions">
+                                <li><a href="/klient/details/<%=kl._id%>"
+                                        class="list-actions-button-details">Szczegóły</a>
+                                </li>
+
+
+                                <li><a href="/klient/edit/<%=kl._id%>" class="list-actions-button-edit">Edytuj</a>
+                                </li>
+
+                                <li><a href="/klient/delete/<%=kl._id%>" class="list-actions-button-delete">Usuń</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <% } %>
+            </tbody>
+
+
+        </table>
+        <p></p>
+        <a href="/klient/add" class="dodajNowy">Dodaj klienta</a>
+
+
+    </main>
+
+    <%- include ('../../fragments/footer.ejs') %>

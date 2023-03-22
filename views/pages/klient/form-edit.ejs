@@ -1,0 +1,68 @@
+<%- include ('../../fragments/header.ejs') %>
+    <main>
+        <script type="application/javascript" src="/js/validationKlientForm.js"></script>
+        <% if ( formMode=='showDetails' || formMode=='edit' ) { %>
+            <h2>
+                <%= pageTitle %>
+            </h2>
+
+            <form class="form" method="post" action="<%= formAction %>" novalidate onsubmit="return validateForm();">
+                <input type="hidden" name="_id" value="<%=kl._id%>">
+
+                <label for="firstname">Imie: </label>
+                <input type="text" name="firstname" id="firstname" value="<%= kl.firstName%>" required
+                    <%=(formMode=='showDetails' ) ? 'disabled' : '' %>/>
+                <span id="errorFirstName" class="errors-text"></span>
+
+                <label for="lastname">Nazwisko: </label>
+                <input type="text" name="lastname" id="lastname" value="<%= kl.lastName%>" required
+                    <%=(formMode=='showDetails' ) ? 'disabled' : '' %>/>
+                <span id="errorLastName" class="errors-text"></span>
+
+                <label for="telNum">Numer tel.: </label>
+                <input type="text" name="telNum" id="telNum" value="<%= kl.telNum%>" required
+                    <%=(formMode=='showDetails' ) ? 'disabled' : '' %>/>
+                <span id="errorTelNum" class="errors-text"></span>
+                <p></p>
+                <div class="form-buttons">
+                    <p id="errorsSummary" class="errors-text"></p>
+                    <input type="submit" value="Dodaj" id="dodaj" class="form-button-submit">
+                    <a href="/klient" class="form-button-cancel">Anuluj</a>
+                </div>
+            </form>
+            <h2>Szczegóły wizyty</h2>
+
+            <table class="table-list">
+                <thead>
+                    <tr>
+                        <th>Usługa</th>
+                        <th>Cena</th>
+                        <th>Data</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (let e of kl.wizyta) { %>
+                        <tr>
+                            <td><a href="/usluga/details/<%= e.usluga._id%>">
+                                    <%= e.usluga.nazwa %>
+                                </a></td>
+                            <td>
+                                <%= e.cena %>
+                            </td>
+                            <td>
+                                <%= e.data ?e.data.toISOString().split('T')[0] : '' %>
+                            </td>
+
+                        </tr>
+                        <% } %>
+                </tbody>
+            </table>
+            <% } %>
+                <p></p>
+                <div class="form">
+                    <a href="/klient" class="list-actions-button-powrot">Powrót</a>
+                </div>
+
+    </main>
+    <%- include ('../../fragments/footer.ejs') %>

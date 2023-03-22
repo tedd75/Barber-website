@@ -1,0 +1,64 @@
+<%- include ('../../fragments/header.ejs') %>
+    <main>
+        <script type="application/javascript" src="/js/validationKlientForm.js"></script>
+        <h2>
+            <%= pageTitle %>
+        </h2>
+
+        <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();">
+
+            <input type="hidden" name="_id" value="<%=kl._id%>">
+
+            <label for="firstName">Imie: *</label>
+            <input class="<%= validationErrors.find(g => g.path.includes('firstName')) ? 'error-input' : '' %>"
+                type="text" name="firstName" id="firstName" placeholder="2-60 znakow" value="<%= kl.firstName %>"
+                <%=(formMode=='showDetails' ) ? 'disabled' : '' %>/>
+            <span id="error-image-url" class="errors-msg">
+
+                <!-- <div style="display: none">
+                    <span id="errorMessage-required">
+                        <%= __('validationMessage.fieldRequired') %>
+                    </span>
+                </div> -->
+                <% if (validationErrors && validationErrors.find(c=> c.path.includes('firstName'))) { %>
+                    <%= __(validationErrors.find(err=> err.path.includes('firstName')).message) %>
+                        <% } %>
+            </span>
+
+
+
+            <label for="lastName">Nazwisko: *</label>
+            <input class="<%= validationErrors.find(g => g.path.includes('lastName')) ? 'error-input' : '' %>"
+                type="text" name="lastName" id="lastName" placeholder="2-60 znakow" value="<%= kl.lastName %>"
+                <%=(formMode=='showDetails' ) ? 'disabled' : '' %>/>
+            <span id="errorLastName" class="errors-text">
+                <% if (validationErrors && validationErrors.find(c=> c.path.includes('lastName'))) { %>
+                    <%= __(validationErrors.find(err=> err.path.includes('lastName')).message) %>
+                        <% } %>
+            </span>
+
+            <label for="telNum">Numer tel.: *</label>
+            <input class="<%= validationErrors.find(g => g.path.includes('telNum')) ? 'error-input' : '' %>" type="text"
+                name="telNum" id="telNum" placeholder="np. +48567891012" value="<%= kl.telNum %>"
+                <%=(formMode=='showDetails' ) ? 'disabled' : '' %>/>
+            <span id="errorTelNum" class="errors-text">
+                <% if (validationErrors.find(c=> c.path.includes('telNum'))) { %>
+                    <%= validationErrors.find(c=> c.path.includes('telNum')).message %>
+                        <% } %>
+            </span>
+
+            <p></p>
+
+            <div class="form-buttons">
+                <p id="errorsSummary" class="errors-text"></p>
+                <% if (formMode !='showDetails' ) { %>
+                    <input class="form-button-submit" type="submit" value="<%=btnLabel%>" id="dodaj">
+                    <a href="/klient" class="form-button-cancel">Anuluj</a>
+                    <% } else { %>
+                        <a class="form-button-cancel" href="/klient"> Powrot</a>
+                        <% } %>
+            </div>
+        </form>
+
+    </main>
+    <%- include ('../../fragments/footer.ejs') %>

@@ -1,0 +1,61 @@
+<%- include ('../../fragments/header.ejs') %>
+    <main>
+        <% if ( formMode=='showDetails' || formMode=='edit' ) { %>
+            <h2>Szczegóły klienta</h2>
+
+            <form action="" class="form">
+
+
+                <label for="firstname">Imie: </label>
+                <input type="text" name="firstname" id="firstname" value=" <%= kl.firstName %>" disabled>
+                <span id="errorFirstName"></span>
+                <label for="lastname">Nazwisko: </label>
+                <input type="text" name="lastname" id="lastname" value=" <%= kl.lastName %>" disabled>
+                <span id="errorLastName"></span>
+                <label for="telNum">Numer tel.: </label>
+                <input type="text" name="telNum" id="telNum" value="<%= kl.telNum %>" disabled>
+                <span id="errorTelNum"></span>
+
+                <% if (formMode=='showDetails' ) { %>
+                    <div class="form-buttons">
+                        <a href="/klient/edit/<%=kl._id%>" class="list-actions-button-edit">Edytuj</a>
+                    </div>
+                    <% } %>
+            </form>
+
+            <h2>Szczegóły wizyty</h2>
+
+            <table class="table-list">
+                <thead>
+                    <tr>
+                        <th>Usługa</th>
+                        <th>Cena</th>
+                        <th>Data</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (let e of kl.wizyta) { %>
+                        <tr>
+                            <td><a href="/usluga/details/<%= e.usluga._id%>">
+                                    <%= e.usluga.nazwa %>
+                                </a></td>
+                            <td>
+                                <%= e.cena %>
+                            </td>
+                            <td>
+                                <%= e.data ?e.data.toISOString().split('T')[0] : '' %>
+                            </td>
+
+                        </tr>
+                        <% } %>
+                </tbody>
+            </table>
+            <% } %>
+                <p></p>
+                <div class="form">
+                    <a href="/klient" class="list-actions-button-powrot">Powrót</a>
+                </div>
+
+    </main>
+    <%- include ('../../fragments/footer.ejs') %>

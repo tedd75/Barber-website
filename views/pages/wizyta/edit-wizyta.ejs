@@ -1,0 +1,32 @@
+<%- include ('../../fragments/header.ejs') %>
+    <main>
+
+        <h2>
+            <%= pageTitle %>
+        </h2>
+        <script type="application/javascript" src="/js/validationWizytaForm.js"></script>
+
+        <form action="" class="form" onsubmit="return validateForm();">
+            <label for="klient">Klient: </label>
+            <input type="text" name="klient" id="klient"
+                value="<%=wizyta.klient.firstName + ' ' + wizyta.klient.lastName%>" required>
+            <span id="errorKlient"></span>
+            <label for="usluga">Usługa: </label>
+            <input type="text" name="usluga" id="usluga" value="<%= wizyta.usluga.nazwa%>" required>
+            <span id="errorUsluga"></span>
+            <label for="cena">Cena: </label>
+            <input type="text" name="cena" id="cena" value="<%= wizyta.cena %>" required>
+            <span id="errorCena"></span>
+            <label for="data">Data: </label>
+            <input type="date" name="data" id="data" value="<%= wizyta.data %>" required>
+            <span id="errorData"></span>
+            <p></p>
+            <div class="form-buttons">
+                <p id="errorsSummary"></p>
+                <input type="submit" id="dodaj" class="form-button-submit">
+                <a href="/wizyta" class="form-button-cancel">Anuluj</a>
+            </div>
+        </form>
+
+    </main>
+    <%- include ('../../fragments/footer.ejs') %>

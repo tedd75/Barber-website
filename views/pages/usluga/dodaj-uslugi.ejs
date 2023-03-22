@@ -1,0 +1,48 @@
+<%- include ('../../fragments/header.ejs') %>
+    <main>
+        <script type="application/javascript" src="/js/validationUslugaForm.js"></script>
+
+        <h2>
+            <%= pageTitle %>
+        </h2>
+
+        <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();">
+            <input type="hidden" name="_id" value="<%=uslu._id%>">
+
+            <label for="name">Nazwa: *</label>
+            <input class="<%= validationErrors.find(g => g.path.includes('nazwa')) ? 'error-input' : '' %>" type="text"
+                name="nazwa" id="nazwa" placeholder="2-60 znakow" value="<%= uslu.nazwa %>" <%=(formMode=='showDetails'
+                ) ? 'disabled' : '' %>/>
+            <span id="errorNazwa" class="errors-text">
+                <% if (validationErrors.find(c=> c.path.includes('nazwa'))) { %>
+                    <%= validationErrors.find(c=> c.path.includes('nazwa')).message %>
+                        <% } %>
+            </span>
+
+            <label for="rodzaj">Rodzaj: *</label>
+            <input class="<%= validationErrors.find(g => g.path.includes('rodzaj')) ? 'error-input' : '' %>" type="text"
+                name="rodzaj" id="rodzaj" placeholder="2-60 znakow" value="<%= uslu.rodzaj %>"
+                <%=(formMode=='showDetails' ) ? 'disabled' : '' %>/>
+
+            <span id="errorRodzaj" class="errors-text">
+                <% if (validationErrors.find(c=> c.path.includes('rodzaj'))) { %>
+                    <%= validationErrors.find(c=> c.path.includes('rodzaj')).message %>
+                        <% } %>
+            </span>
+
+
+            <p></p>
+
+            <div class="form-buttons">
+                <p id="errorsSummary" class="errors-text"></p>
+                <% if (formMode !='showDetails' ) { %>
+                    <input class="form-button-submit" type="submit" value="<%=btnLabel%>" id="dodaj">
+                    <a href="/usluga" class="form-button-cancel">Anuluj</a>
+                    <% } else { %>
+                        <a class="form-button-cancel" href="/usluga"> Powrot</a>
+                        <% } %>
+            </div>
+        </form>
+
+    </main>
+    <%- include ('../../fragments/footer.ejs') %>

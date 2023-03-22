@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/header.css">
+    <title>BARBER SHOP Cut&Go</title>
+</head>
+
+<body>
+    <header>
+        <h1>BARBER SHOP Cut&Go</h1>
+        <img src="../../images/72c89f2f.jpg" alt="BARBER SHOP NDT LOGO">
+    </header>
+    <nav>
+
+        <ul>
+            <li><a href="file:///Z:/5sem/TIN/index.html">Strona główna</a></li>
+            <li><a href="../klient/list.html" class="active">Klient</a></li>
+            <li><a href="../wizyta/lista-wizyt.html">Wizyta</a></li>
+            <li><a href="../usluga/lista-uslug.html">Usługa</a></li>
+        </ul>
+    </nav>
+    <main>
+
+        <h2>Dodaj nowego klienta</h2>
+
+        <form action="" class="form" onsubmit="return validateForm();">
+            <label for="firstname">Imie: </label>
+            <input type="text" name="firstName" id="firstName">
+            <span id="errorFirstName">Pole jest wymagane</span>
+            <label for="lastname">Nazwisko: </label>
+            <input type="text" name="lastName" id="lastName">
+            <span id="errorLastName">Pole jest wymagane</span>
+            <label for="telNum">Numer tel.: </label>
+            <input type="text" name="telNum" id="telNum">
+            <span id="errorTelNum">Pole jest wymagane</span>
+
+            <p></p>
+            <div class="form-buttons">
+                <p id="errorsSummary"></p>
+                <input type="submit" value="Dodaj" id="dodaj" class="form-button-submit">
+                <a href="" class="form-button-cancel">Anuluj</a>
+            </div>
+        </form>
+
+    </main>
+    <p></p>
+
+    <footer>
+        Duc Tu Nguyen s20470
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<%- include ('../../fragments/header.ejs') %>
+    <main>
+
+        <h2>Usuwanie wizyt</h2>
+
+        <form action="">
+            <label for="klient">Klient: </label>
+            <input type="text" name="klient" id="klient" value="Jan" disabled>
+            <span id="errorKlient"></span>
+            <label for="usluga">Usługa: </label>
+            <input type="text" name="usluga" id="usluga" value="Kowalski" disabled>
+            <span id="errorUsługa"></span>
+            <label for="cena">Cena: </label>
+            <input type="text" name="cena" id="cena" value="100" disabled>
+            <span id="errorCena"></span>
+            <label for="cena">Data: </label>
+            <input type="date" name="data" id="data" value="" disabled>
+            <span id="errorData"></span>
+            <p></p>
+            <div>
+                <p id="errorsSummary"></p>
+
+                <a href="../klient/form-edit.html" class="list-actions-button-delete">Edytuj</a>
+            </div>
+        </form>
+
+    </main>
+    <%- include ('../../fragments/footer.ejs') %>

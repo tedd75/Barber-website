@@ -1,0 +1,30 @@
+<%- include ('../../fragments/header.ejs') %>
+    <main>
+        <script type="application/javascript" src="/js/validationUslugaForm.js"></script>
+        <% if ( formMode=='showDetails' || formMode=='edit' ) { %>
+            <h2>
+                <%= pageTitle %>
+            </h2>
+
+            <form action="<%=formAction%>" class="form" novalidate onsubmit="return validateForm();">
+                <input type="hidden" name="_id" value="<%=uslu._id%>">
+
+                <label for="firstname">Nazwa: </label>
+                <input type="text" name="nazwa" id="nazwa" value="<%= uslu.nazwa%>" required <%=(formMode=='showDetails'
+                    ) ? 'disabled' : '' %>/>
+                <span id="errorNazwa" class="errors-text"></span>
+                <label for="lastname">Rodzaj: </label>
+                <input type="text" name="rodzaj" id="rodzaj" value="<%= uslu.rodzaj%>" required
+                    <%=(formMode=='showDetails' ) ? 'disabled' : '' %>/>
+                <span id="errorRodzaj" class="errors-text"></span>
+
+                <p></p>
+                <div class="form-buttons">
+                    <p id="errorsSummary" class="errors-text"></p>
+                    <input type="submit" id="dodaj" class="form-button-submit">
+                    <a href="/usluga" class="form-button-cancel">Anuluj</a>
+                </div>
+            </form>
+            <% } %>
+    </main>
+    <%- include ('../../fragments/footer.ejs') %>

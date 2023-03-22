@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/header.css">
+    <script type="application/javascript" src="/js/validationCommon.js"></script>
+
+
+    <title>BARBER SHOP Cut&Go</title>
+</head>
+
+<body>
+    <header>
+        <h1>BARBER SHOP Cut&Go</h1>
+        <img src="/images/72c89f2f.jpg" alt="Barber Shop Logo">
+
+    </header>
+
+    <nav>
+        <ul>
+
+            <li><a href="/changeLang/pl" class="<%= lang == 'pl' ? 'active' : ''%>">PL</a></li>
+            <li><a href="/changeLang/en" class="<%= lang == 'en' ? 'active' : ''%>">EN</a></li>
+
+            <% if(loggedUser) { %>
+                <li><a href="/" class="<%= navLocation == 'main' ? 'active' : ''%>">Strona Główna</a></li>
+                <% } %>
+                    <li><a href="/klient" class="<%= navLocation == 'klient' ? 'active' : ''%>">Klient</a></li>
+                    <li><a href="/wizyta" class="<%= navLocation == 'wizyta' ? 'active' : ''%>">Wizyta</a></li>
+                    <li><a href="/usluga" class="<%= navLocation == 'usluga' ? 'active' : ''%>">Usluga</a></li>
+        </ul>
+    </nav>

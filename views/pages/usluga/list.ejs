@@ -1,0 +1,50 @@
+<%- include ('../../fragments/header.ejs') %>
+    <main>
+        <h2>Lista Usług</h2>
+        <table class="table-list">
+            <thead>
+                <tr>
+                    <th>ID Usługi</th>
+                    <th>Nazwa</th>
+                    <th>Rodzaj</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (let uslu of uslus) { %>
+                    <tr>
+                        <td>
+                            <%= uslu._id %>
+                        </td>
+                        <td>
+                            <%= uslu.nazwa %>
+                        </td>
+                        <td>
+                            <%= uslu.rodzaj %>
+                        </td>
+
+                        <td>
+                            <ul class="list-actions">
+                                <li><a href="/usluga/details/<%= uslu._id %>"
+                                        class="list-actions-button-details">Szczegóły</a>
+                                </li>
+                                <li><a href="/usluga/edit/<%=uslu._id%>" class="list-actions-button-edit">Edytuj</a>
+                                </li>
+                                <li><a href="/usluga/delete/<%=uslu._id%>" class="list-actions-button-delete">Usuń</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+
+                    <% } %>
+            </tbody>
+
+
+        </table>
+        <p></p>
+        <a href="/usluga/add" class="dodajNowy">Dodaj usługę</a>
+
+
+    </main>
+
+    <%- include ('../../fragments/footer.ejs') %>

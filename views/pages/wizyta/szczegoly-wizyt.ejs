@@ -1,0 +1,51 @@
+<%- include ('../../fragments/header.ejs') %>
+    <main>
+
+        <h2>Szczegóły wizyty</h2>
+
+        <form action="" class="form">
+
+            <label for="klient">Klient: </label>
+
+            <select name="klID" id="klient" <%=(formMode=='showDetails' ) ? 'disabled' : '' %>
+                <option class="option">--Wybierz klienta--</option>
+                <% for (let i=0; i<allKls.length; i++ ) { let kl=allKls[i]; %>
+                    <option value="<%= kl._id %>" label="<%= kl.firstName + ' ' + kl.lastName %>" <%=( wizyta._id &&
+                        kl._id.toString()==wizyta.klient._id.toString()) ? 'selected' : '' %>></option>
+
+                    <% } %>
+            </select>
+
+            <!-- <input type="text" name="klient" id="klient"> -->
+            <span id="errorKlient" class="errors-text"></span>
+            <label for="usluga">Usługa: </label>
+
+            <select name="usluID" id="usluga" required <%=(formMode=='showDetails' ) ? 'disabled' : '' %>
+                <option class="option">--Wybierz usługę--</option>
+                <% for (let i=0; i<allUslus.length; i++ ) { let uslu=allUslus[i]; %>
+                    <option value="<%= uslu._id %>" label="<%= uslu.nazwa %>" <%=( wizyta._id &&
+                        uslu._id.toString()==wizyta.usluga._id.toString()) ? 'selected' : '' %>></option>
+                    <% } %>
+            </select>
+            <!-- <input type="text" name="usluga" id="usluga"> -->
+            <span id="errorUsluga" class="errors-text"></span>
+
+            <label for="cena">Cena: </label>
+            <input type="number" name="cena" id="cena" value="<%= wizyta.cena %>" disabled>
+            <span id="errorCena" class="errors-text"></span>
+            <label for="data">Data: </label>
+            <input type="data" name="data" id="data"
+                value="<%= wizyta.data ? wizyta.data.toISOString().split('T')[0] : '' %>" disabled>
+            <span id=" errorData" class="errors-data"></span>
+            <!-- <label for="czas">Godzina: </label>
+            <input type="time" name="czas" id="czas" min="08:00" max="21:00">
+            <span id="errorCzas" class="errors-czas"></span> -->
+
+            <div class="form">
+                <a href="/wizyta/edit/<%=wizyta._id%>" class="list-actions-button-edit">Edytuj</a>
+                <a href="/wizyta" class="list-actions-button-powrot">Powrót</a>
+            </div>
+        </form>
+
+    </main>
+    <%- include ('../../fragments/footer.ejs') %>

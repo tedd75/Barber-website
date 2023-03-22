@@ -1,0 +1,24 @@
+<%- include ('../../fragments/header.ejs') %>
+    <main>
+
+        <h2>Usuwanie klienta</h2>
+
+        <form action="">
+            <label for="firstname">Imie: </label>
+            <input type="text" name="firstname" id="firstname" disabled>
+            <span id="errorFirstName" class="errors-text"></span>
+            <label for="lastname">Nazwisko: </label>
+            <input type="text" name="lastname" id="lastname" disabled>
+            <span id="errorLastName" class="errors-text"></span>
+            <label for="telNum">Numer tel.: </label>
+            <input type="text" name="telNum" id="telNum" disabled>
+            <span id="errorTelNum" class="errors-text"></span>
+            <p></p>
+            <div>
+                <p id="errorsSummary"></p>
+                <a href="/klient" class="list-actions-button-delete">Usuń</a>
+            </div>
+        </form>
+
+    </main>
+    <%- include ('../../fragments/footer.ejs') %>

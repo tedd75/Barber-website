@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/stronaglowna.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Island+Moments&family=Open+Sans:wght@300&family=Playfair+Display:ital@0;1&family=Poor+Story&display=swap"
+    rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Island+Moments&family=Open+Sans:wght@300&family=Playfair+Display:ital@0;1&family=Poor+Story&display=swap"
+    rel="stylesheet">
+  <script type="application/javascript" src="/js/validationCommon.js"></script>
+  <script type="application/javascript" src="/js/validationEmpForm.js"></script>
+
+  <nav>
+    <title>BARBER SHOP Cut&Go</title>
+  </nav>
+
+</head>
+
+<body>
+  <header>
+    <% if(!loggedUser) { %>
+      <div id="login">
+        <h5> Logowanie </h5>
+        <form method="post" action="/login" novalidate>
+          <label for="loginLastName">Login: </label>
+          <input type="text" id="login" name="login">
+
+          <label for="loginPassword">Password: </label>
+          <input type="password" id="loginPassword" name="password">
+
+
+          <input type="submit" value="Zaloguj sie">
+          <span id="loginErrors">
+            <%= loginError ? loginError : '' %>
+          </span>
+        </form>
+      </div>
+
+      <% } else { %>
+
+        <span>Jestes zalogowany jako: <%=loggedUser.firstName + " " + loggedUser.lastName%></span>
+        <a href="/logout">Wyloguj sie</a>
+
+        <% } %>
+          <h1>BARBER SHOP Cut&Go</h1>
+          <img src="images\72c89f2f.jpg" alt="BARBER SHOP NDT LOGO" width=100px height=100px>
+
+
+  </header>
+  <nav>
+
+    <ul>
+      <li><a href="/" class="active">Strona główna</a></li>
+      <li><a href="/klient">Klient</a></li>
+      <li><a href="/wizyta">Wizyta</a></li>
+      <li><a href="/usluga">Usługa</a></li>
+    </ul>
+  </nav>
+  <main>
+    <h2>Strona główna</h2>
+
+
+    <div>
+      <p class="main">
+        Fryzjerstwo to więcej niż kilka ruchów nożyczkami i grzebieniem.
+        To sztuka kreacji, wymagająca prawdziwej wirtuozerii, wyobraźni i pasji.
+        Jeśli myślisz o stylizacji włosów podobnie jak my – zakład
+        fryzjerski Mąż Fryzjerki to Twoje miejsce na ziemi. Najlepszy fryzjer wie,
+        że diabeł tkwi w szczegółach. Nawet najmniejszy niuans: ton koloru włosów,
+        delikatny ruch nożyczek czy grzebienia może nadać fryzurze „tego czegoś”,
+        co sprawi, że będziesz wyglądać niczym gwiazda prosto z Hollywood. Nasi styliści
+        fryzur zadbają o to od podstaw – wspólnie z Tobą poszukując koloru, strzyżenia
+        czy upięcia, które pasuje do Ciebie niczym rękawiczka do dłoni. Wydobędziemy
+        Twoje wewnętrzne piękno, oferując prawdziwą metamorfozę na głowie. Przyjdź do
+        naszego salonu przy ul. Wilczej (ścisłe centrum Warszawy) i przekonaj się na
+        własnej skórze, jak pracują najlepsi fryzjerzy w Warszawie!
+
+      </p>
+    </div>
+
+    <div id="oNas">
+
+      <img src="images/f-142682-jakie-uslugi-oferuje-barber.jpg" alt="">
+      <p>Cut&Go to nowe miejsce na mapie Warszawy dla prawdziwych mężczyzn.</p>
+
+      <p> Cut&Go to nie tylko strzyżenie i fryzury, to także świetna ekipa, chęć rozwoju, prawdziwe emocje i
+        doskonałość
+        we wszystkim co robimy.
+      </p>
+      <p>
+        Nasz pierwszy barbershop istnieje od 2019 roku. Od tego czasu otworzyliśmy 4 salony po całej Warszawie.
+        Mamy
+        super ekipę z 14 osób.
+      </p>
+      <p>
+        To jest miejsce gdzie nasza pasja i Twoje potrzeby spotykają się w jednym miejscu.
+      </p>
+
+
+    </div>
+  </main>
+
+  <footer>
+    Duc Tu Nguyen s20470
+  </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+<%- include ('../../fragments/header.ejs') %>
+    <main>
+
+        <h2>
+            <%= pageTitle %>
+        </h2>
+        <script type="application/javascript" src="/js/validationWizytaForm.js"></script>
+
+        <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();">
+            <input type="hidden" name="_id" value="<%=wizyta._id%>">
+
+            <label for="klient">Klient: *</label>
+            <select class="<%= validationErrors.find(g => g.path.includes('wizyta_id')) ? 'error-input' : '' %>"
+                name="klient" id="klId" required <%=(formMode=='showDetails' ) ? 'disabled' : '' %> >
+                <option value="" selected>---Wybierz klienta---</option>
+                <% for (let i=0; i<allKls.length; i++ ) { let kl=allKls[i]; %>
+                    <option value="<%= kl._id %>" label="<%= kl.firstName + ' ' + kl.lastName %>" <%=( wizyta._id &&
+                        kl._id.toString()==wizyta.klient._id.toString()) ? 'selected' : '' %>>
+                    </option>
+                    <% } %>
+            </select>
+            <span id="errorKlient" class="errors-text">
+                <% if (validationErrors.find(c=> c.path.includes('wizyta_id'))) { %>
+                    <%= validationErrors.find(c=> c.path.includes('wizyta_id')).message %>
+                        <% } %>
+            </span>
+
+            <label for="usluga">Usługa: *</label>
+            <select class="<%= validationErrors.find(g => g.path.includes('wizyta_id')) ? 'error-input' : '' %>"
+                name="usluID" id="usluga" required <%=(formMode=='showDetails' ) ? 'disabled' : '' %>
+                <option value="" selected>---Wybierz klienta---</option>
+                <% for (let i=0; i<allUslus.length; i++ ) { let uslu=allUslus[i]; %>
+                    <option value="<%= uslu._id %>" label="<%= uslu.nazwa %>" <%=( wizyta._id &&
+                        uslu._id.toString()==wizyta.usluga._id.toString()) ? 'selected' : '' %>>
+                    </option>
+                    <% } %>
+            </select>
+            <span id="errorUsluga" class="errors-text">
+                <% if (validationErrors.find(c=> c.path.includes('wizyta_id'))) { %>
+                    <%= validationErrors.find(c=> c.path.includes('wizyta_id')).message %>
+                        <% } %>
+            </span>
+            <label for="cena">Cena: *</label>
+            <input class="<%= validationErrors.find(g => g.path.includes('cena')) ? 'error-input' : '' %>" type="number"
+                name="cena" id="cena" placeholder="np. 100" value="<%= wizyta.cena%>" <%=(formMode=='showDetails' )
+                ? 'disabled' : '' %>/>
+            <span id="errorCena" class="errors-text">
+                <% if (validationErrors.find(c=> c.path.includes('cena'))) { %>
+                    <%= validationErrors.find(c=> c.path.includes('cena')).message %>
+                        <% } %>
+            </span>
+
+            <label for="data">Data: *</label>
+            <input class="<%= validationErrors.find(g => g.path.includes('data')) ? 'error-input' : '' %>" type="date"
+                name="data" id="data" value="<%= fmt.formatDate(wizyta.data) %>" <%=(formMode=='showDetails' )
+                ? 'disabled' : '' %>/>
+            <span id="errorData" class="errors-data">
+                <% if (validationErrors.find(c=> c.path.includes('data'))) { %>
+                    <%= validationErrors.find(c=> c.path.includes('data')).message %>
+                        <% } %>
+            </span>
+            <p></p>
+            <div class="form-buttons">
+                <p id="errorsSummary" class="errors-text"></p>
+                <% if (formMode !='showDetails' ) { %>
+                    <input value="<%=btnLabel%>" type="submit" id="dodaj" class="form-button-submit">
+                    <a href="/wizyta" class="form-button-cancel">Anuluj</a>
+                    <% } else { %>
+                        <a class="form-button-cancel" href="/wizyta"> Powrot</a>
+                        <% } %>
+            </div>
+        </form>
+
+    </main>
+    <%- include ('../../fragments/footer.ejs') %>

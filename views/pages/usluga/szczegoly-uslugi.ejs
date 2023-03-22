@@ -1,0 +1,54 @@
+<%- include ('../../fragments/header.ejs') %>
+    <main>
+        <% if ( formMode=='showDetails' || formMode=='edit' ) { %>
+            <h2>Szczegóły usługę</h2>
+
+            <form action="" class="form">
+                <label for="firstname">Nazwa: </label>
+                <input type="text" name="nazwa" id="nazwa" value=" <%= uslu.nazwa %>" disabled>
+                <span id="errorFirstName" class="errors-text"></span>
+                <label for="lastname">Rodzaj: </label>
+                <input type="text" name="rodzaj" id="rodzaj" value=" <%= uslu.rodzaj %>" disabled>
+                <span id="errorLastName" class="errors-text"></span>
+                <% if (formMode=='showDetails' ) { %>
+                    <div class="form-buttons">
+                        <a href="/usluga/edit/<%=uslu._id%>" class="list-actions-button-edit">Edytuj</a>
+                    </div>
+                    <% } %>
+            </form>
+
+            <h2>Szczegóły wizyty</h2>
+
+            <table class="table-list">
+                <thead>
+                    <tr>
+                        <th>Klient</th>
+                        <th>Cena</th>
+                        <th>Data</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (let e of uslu.wizyta) { %>
+                        <tr>
+                            <td><a href="/klient/details/<%= e.klient._id%>">
+                                    <%= e.klient.firstName + ' ' + e.klient.lastName %>
+                                </a></td>
+                            <td>
+                                <%= e.cena %>
+                            </td>
+                            <td>
+                                <%= e.data ?e.data.toISOString().split('T')[0] : '' %>
+                            </td>
+
+                        </tr>
+                        <% } %>
+                </tbody>
+            </table>
+            <% } %>
+                <p></p>
+                <div class="form">
+                    <a href="/usluga" class="list-actions-button-powrot">Powrót</a>
+                </div>
+    </main>
+    <%- include ('../../fragments/footer.ejs') %>

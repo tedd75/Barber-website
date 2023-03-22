@@ -1,0 +1,22 @@
+<%- include ('../../fragments/header.ejs') %>
+    <main>
+
+        <h2>Usuwanie Usługi</h2>
+
+        <form action="">
+            <label for="firstname">Nazwa: </label>
+            <input type="text" name="nazwa" id="nazwa" disabled>
+            <span id="errorFirstName"></span>
+            <label for="lastname">Rodzaj: </label>
+            <input type="text" name="rodzaj" id="rodzaj" disabled>
+            <span id="errorLastName"></span>
+
+            <p></p>
+            <div>
+                <p id="errorsSummary"></p>
+                <a href="../usluga/edit-uslugi.html" class="list-actions-button-delete">Edytuj</a>
+            </div>
+        </form>
+
+    </main>
+    <%- include ('../../fragments/footer.ejs') %>

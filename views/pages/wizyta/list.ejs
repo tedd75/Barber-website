@@ -1,0 +1,56 @@
+<%- include ('../../fragments/header.ejs') %>
+    <main>
+
+        <h2>Lista wizyt</h2>
+        <table class="table-list">
+            <thead>
+                <tr>
+
+                    <th>ID Wizyty</th>
+                    <th>Klient</th>
+                    <th>Usługa</th>
+                    <th>Cena</th>
+                    <th>Data</th>
+                    <th></th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <% for (let wizy of wizys) { %>
+                    <tr>
+                        <td>
+                            <%=wizy._id %>
+                        </td>
+                        <td>
+                            <%= wizy.klient.lastName %>
+                        </td>
+                        <td>
+                            <%= wizy.usluga.nazwa %>
+                        </td>
+                        <td>
+                            <%= wizy.cena %>
+                        </td>
+                        <td>
+                            <%= wizy.data ? wizy.data.toISOString().split('T')[0] : '' %>
+                        </td>
+                        <td>
+                            <ul class="list-actions">
+                                <li><a href="/wizyta/details/<%=wizy._id%>"
+                                        class="list-actions-button-details">Szczegóły</a>
+                                </li>
+                                <li><a href="/wizyta/edit/<%=wizy._id%>" class="list-actions-button-edit">Edytuj</a>
+                                </li>
+                                <li><a href="/wizyta/delete/<%=wizy._id%>" class="list-actions-button-delete">Usuń</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+
+                    <% } %>
+            </tbody>
+        </table>
+        <p></p>
+        <a href="/wizyta/add" class="dodajNowy">Dodaj wizytę</a>
+    </main>
+
+    <%- include ('../../fragments/footer.ejs') %>
